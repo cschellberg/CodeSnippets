@@ -1,0 +1,38 @@
+{
+  "name": "multi-radix-counter",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "AppCounter.js",
+  "scripts": {
+    "start": "node src/multi_radix_counter/AppCounter.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest",
+    "build": "webpack --config webpack.config.js",
+    "package-zip": "npm-pack-zip --out=multi-radix-countes --ver"
+  },
+  "files": [
+    "dist",
+    "src",
+    "test",
+    "README.md",
+    "counterDemo.html",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "babel-loader": "^10.0.0",
+    "jest": "^30.2.0",
+    "npm-pack-zip": "^1.3.0",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "keywords": [
+    "radix",
+    "counter",
+    "utility",
+    "numeric",
+    "library"
+  ],
+  "author": "Donald Schellberg",
+  "license": "SEE LICENSE IN LICENSE"
+}

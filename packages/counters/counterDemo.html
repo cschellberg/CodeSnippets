@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bundle Test</title>
+</head>
+<body>
+<h1>Counter Bundle Test</h1>
+<div>
+    This test has a Counters object with 3 counters, the first radix 2, the second radix 4, the third radix 3.<br/>
+    It will increment the least significant counter(the third) and will continue incrementing
+    until the maximum of all 3 counters is reached.
+</div>
+<pre id="output">
+</pre>
+
+<script src="dist/multi.radix.counter.js"></script>
+
+<script>
+    // Use the globally exposed name of your class (if Webpack configured it)
+    // Or if it's an IIFE/self-executing bundle, it may run immediately.
+    const CountersClass = window.CountersLibrary;
+    console.log("CountersClass is "+CountersClass)
+    if (typeof CountersClass === 'function') {
+        let counters = new CountersClass([2, 4, 3]);
+        let output = 'Starting counts: ' + counters.getCurrentCounts().join(', ') + '\n';
+
+        // Run a few operations
+        while (!counters.isFinished()) {
+            counters.increment();
+            output += 'Incremented: ' + counters.getCurrentCounts().join(', ') + '\n';
+        }
+
+        document.getElementById('output').textContent = output;
+    } else {
+        document.getElementById('output').textContent = "ERROR: Counters class not found in bundle.";
+    }
+</script>
+</body>
+</html>
