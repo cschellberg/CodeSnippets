@@ -70,6 +70,10 @@ Implementing nested loops with varying iteration limits.
 
 Modeling time or other units that use a mixed-radix system (e.g., Days/30,Hours/24,Minutes/60,Seconds/60).
 
+## Testing, Building
+**To Test:** npm run test
+**To Build:** npm run build
+
 ## Example
 
 There is an html final that can demo the counter.  It is called
