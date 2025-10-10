@@ -1,3 +1,9 @@
+/*
+(c) 2025 Donald Schellberg. All rights reserved.
+Licensed under the DS-NC 1.0 Non-Commercial Use License.
+Commercial production use requires a paid license.
+Contact: dschellberg@gmail.com
+*/
 
 class Counter {
     count;

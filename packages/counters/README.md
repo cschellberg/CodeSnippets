@@ -74,3 +74,6 @@ Modeling time or other units that use a mixed-radix system (e.g., Days/30,Hours/
 
 There is an html final that can demo the counter.  It is called
 counterDemo.html
+
+## License
+This code is free for non-commercial use. Commercial production use requires a paid license. See LICENSE.md for details.

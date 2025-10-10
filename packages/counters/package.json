@@ -15,7 +15,7 @@
     "test",
     "README.md",
     "counterDemo.html",
-    "LICENSE"
+    "LICENSE.md"
   ],
   "devDependencies": {
     "@babel/core": "^7.28.4",
