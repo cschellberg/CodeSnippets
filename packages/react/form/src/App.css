@@ -1,0 +1,89 @@
+.app-header{
+    background: black !important;
+    display: flex;
+}
+
+
+
+/* CONTAINER */
+.form-container{
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+
+/* INDIVIDUAL FIELD WRAPPER */
+.form-group{
+    margin-bottom: 15px;
+    width: 350px;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+
+/* LABEL (Set to stack above the input) */
+.form-label{
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+
+    /* FIX: Sets label to its own line and takes full group width */
+    display: block;
+    width: 100%;
+    margin-bottom: 5px; /* Space below label */
+}
+
+/* INPUT FIELD */
+.form-input{
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    margin-right:20px;
+    /* FIX: Input fills the entire .form-group width */
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding doesn't push it wider than 100% */
+}
+
+/* BUTTON GROUP (Forces to new row and centers content) */
+.form-button-group{
+    width: 800px;/* Takes full width of the container row */
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* SUBMIT BUTTON */
+.form-submit{
+    width: 200px;
+    padding: 1px 10px;
+
+    /* FIX: Removed auto margins as parent handles centering */
+    margin-top: 20px;
+
+    color: white;
+    background-color: #007bff;
+    font-size: 16px;
+    height: 30px;
+    font-weight: 600;
+    border: 2px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+
+    /* Kept as inline-block so parent's text-align: center works */
+    display: inline-block;
+}
+
+.error-message{
+    color: red;
+    font-size: 16px;
+    margin-top: 5px;
+}
+

@@ -1,0 +1,51 @@
+{
+  "formClassName": "form-container",
+  "elements": [
+    {
+      "name": "name",
+      "type": "text",
+      "label": "Name",
+      "labelClassName": "form-label",
+      "inputClassName": "form-input",
+      "default": "",
+      "required": true,
+      "validation": {
+        "pattern": "^[a-zA-Z ]{2,50}$"
+      },
+        "errorMessage": "Name must be between 2 and 50 characters and contain only letters and spaces."
+    },
+    {
+      "name": "email",
+      "type": "text",
+      "label": "Email",
+      "labelClassName": "form-label",
+      "inputClassName": "form-input",
+      "default": "",
+      "required": true,
+      "validation": {
+        "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+      },
+        "errorMessage": "Please enter a valid email address."
+    },
+    {
+      "name": "age",
+      "type": "number",
+      "label": "Age",
+      "labelClassName": "form-label",
+      "inputClassName": "form-input",
+      "default": "",
+      "required": true,
+      "validation": {
+        "min": 0,
+        "max": 120
+      },
+        "errorMessage": "Age must be a number between 0 and 120."
+    },
+    {
+      "name": "submit",
+      "inputClassName": "form-submit",
+      "type": "submit",
+      "label": "Submit"
+    }
+  ]
+}
