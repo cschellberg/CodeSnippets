@@ -1,19 +1,27 @@
 import React,{useState,useEffect} from "react";
 import "./App.css";
 import Form from "./components/Form";
+import Table from "./components/Table";
+import { Provider } from 'react-redux'
+import store from './store'
 
 const testConfig="./config/testConfig.json";
 
 
 const App = () => {
-    const [patientId, setPatientId] = useState(0);
+    const [data,setData]=useState([]);
     return (
+        <Provider store={store}>
         <div className="App">
             <div className="content">
-                <Form config={testConfig}/>
+                <Form config={testConfig} setData={setData}/>
             </div>
-        </div>
+            <div className="content">
+                <Table config={testConfig}/>
+            </div>
+        </div></Provider>
     );
+
 };
 
 export default App;

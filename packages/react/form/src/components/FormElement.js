@@ -8,9 +8,12 @@ function FormElement({elementConfigString,formData,setFormData}) {
 
     useEffect(() => {
         let jsonObj=Object.fromEntries(formData);
-        console.log("resetting "+JSON.stringify(jsonObj))
         if ( formData.has("action") && formData.get("action") === "reset") {
             setElementValue("");
+        }
+       else
+        {
+           setElementValue(jsonObj[elementConfig.name])
         }
     }, [formData]);
 
@@ -48,10 +51,11 @@ function FormElement({elementConfigString,formData,setFormData}) {
             setHasErrors(false);
             return;
         }
-        if ( elementConfig.validation){
+        if ( elementConfig.validation && elementConfig.validation.pattern){
             validateByRegex(value)
+        } else {
+            validateByMinMax(value);
         }
-        validateByMinMax(value);
 
     }
 
