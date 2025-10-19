@@ -1,0 +1,50 @@
+{
+  "formClassName": "form-container",
+  "elements": [
+    {
+      "name": "title",
+      "type": "text",
+      "label": "Title",
+      "labelClassName": "form-label",
+      "inputClassName": "form-input",
+      "default": "",
+      "required": true,
+      "validation": {
+        "pattern": "^[a-zA-Z ]{2,50}$"
+      },
+        "errorMessage": "Title must be between 2 and 50 characters and contain only letters and spaces."
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "label": "Description",
+      "labelClassName": "form-label",
+      "inputClassName": "form-input",
+      "default": "",
+      "required": true,
+      "validation": {
+        "pattern": "^[a-zA-Z ]{2,50}$"
+      },
+      "errorMessage": "Please enter a valid description."
+    },
+    {
+      "name": "date",
+      "type": "text",
+      "label": "Date",
+      "labelClassName": "form-label",
+      "inputClassName": "form-input",
+      "default": "",
+      "required": true,
+      "validation": {
+
+      },
+        "errorMessage": "Date description"
+    },
+    {
+      "name": "submit",
+      "inputClassName": "form-submit",
+      "type": "submit",
+      "label": "Submit"
+    }
+  ]
+}
