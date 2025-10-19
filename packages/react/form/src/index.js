@@ -10,6 +10,8 @@ import App from './App';
 // Optional: Import global styles (if you have them)
 import './App.css';
 
+
+
 // 1. Locate the container element defined in public/index.html.
 const container = document.getElementById('root');
 

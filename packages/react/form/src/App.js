@@ -7,17 +7,17 @@ import store from './store'
 
 const testConfig="./config/testConfig.json";
 
-
 const App = () => {
-    const [data,setData]=useState([]);
+
+    const sliceType="member";
     return (
         <Provider store={store}>
         <div className="App">
             <div className="content">
-                <Form config={testConfig} setData={setData}/>
+                <Form config={testConfig} sliceType={sliceType}/>
             </div>
             <div className="content">
-                <Table config={testConfig}/>
+                <Table config={testConfig} sliceType={sliceType}/>
             </div>
         </div></Provider>
     );

@@ -1,15 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect,useMemo} from "react";
 import FormElement from "./FormElement";
 import { useDispatch,useSelector } from 'react-redux';
-import {updateMember,getSelectedMember} from "../redux/member/memberSlice";
+import {updateSliceItem, getSelectedItemBySliceType} from "../redux/item/itemSlice";
 
 let idCounter=1;
 
-function Form({config,setData}) {
+function Form({config,sliceType}) {
+
     const [formData, setFormData] = useState(new Map());
     const [formConfig, setFormConfig] = useState({ formClassName: "", elements: []});
     const dispatch = useDispatch();
-    const selectedMember = useSelector(getSelectedMember);
+    const selectItemBySliceType = useMemo(getSelectedItemBySliceType, []);
+    const selectedItem = useSelector((state) => selectItemBySliceType(state, sliceType));
     useEffect(() => {
 
         fetch(config)
@@ -25,14 +27,16 @@ function Form({config,setData}) {
 
 
     useEffect(() => {
+
         if (formData.has("action") && formData.get("action") === "submit") {
             let mutableMap = new Map(formData);
             mutableMap.delete("action")
-            if ( !mutableMap.has("id")) {
+
+            if ( !mutableMap.has("id") || mutableMap.get("id") === undefined) {
                 mutableMap.set("id", idCounter++);
             }
             let jsonObj = Object.fromEntries(mutableMap);
-            dispatch(updateMember(jsonObj));
+            dispatch(updateSliceItem({sliceType:sliceType,data:jsonObj}));
             let resetMap = new Map();
             resetMap.set("action", "reset");
             setFormData(resetMap);
@@ -45,16 +49,14 @@ function Form({config,setData}) {
 
     useEffect(() => {
 
-          if (selectedMember) {
-            // 1. Convert the member object into a new Map for formData
-            const initialMap = new Map(Object.entries(selectedMember));
-            initialMap.set("id", selectedMember.id);
+          if (selectedItem) {
+            const initialMap = new Map(Object.entries(selectedItem));
+            initialMap.set("id", selectedItem.id);
             setFormData(initialMap);
         } else {
-            // Optional: Clear the form if selectedMember becomes null or undefined
             setFormData(new Map());
         }
-    }, [selectedMember]);
+    }, [selectedItem]);
 
     return (
         <div className={formConfig.formClassName}>

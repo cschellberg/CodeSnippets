@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState,useMemo} from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import {selectMember,deleteMember, selectAllMembers} from '../redux/member/memberSlice';
+import {selectSliceItem,deleteSliceItem, selectAllItemsBySliceType} from '../redux/item/itemSlice';
 
-function Table({config}) {
+function Table({config,sliceType}) {
     const [headers, setHeaders] = useState([]);
-    const members = useSelector(selectAllMembers);
+    const selectItemsBySliceType = useMemo(selectAllItemsBySliceType, []);
+    const items = useSelector((state) => selectItemsBySliceType(state, sliceType));
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,20 +22,20 @@ function Table({config}) {
     }, []);
 
     const selectItem = (id) => {
-        const selectedItem = members.find(member => {
-            return member.id === id
+        const selectedItem = items.find(item => {
+            return item.id === id
         });
         if (selectedItem) {
-            dispatch(selectMember(selectedItem));
+            dispatch(selectSliceItem({sliceType:sliceType,data:selectedItem}));
         }
     }
 
         const deleteItem = (id) => {
-            const deleteItem = members.find(member => {
-                return member.id === id
+            const deleteItem = items.find(item => {
+                return item.id === id
             });
             if (deleteItem) {
-                dispatch(deleteMember(deleteItem));
+                dispatch(deleteSliceItem({sliceType:sliceType,data:deleteItem}));
             }
         }
 
@@ -50,7 +51,7 @@ function Table({config}) {
             </tr>
             </thead>
             <tbody>
-            {members.map((item, rowIndex) => (
+            {items.map((item, rowIndex) => (
                 <tr key={item.id || rowIndex}> {/* Use a unique ID from data or rowIndex */}
                     {headers.map((column, colIndex) => (
                         <td key={colIndex}>
