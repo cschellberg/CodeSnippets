@@ -64,7 +64,6 @@ export const selectAllItemsBySliceType= () =>
     createSelector(
         [selectAllItems, getSliceType],
         (items, sliceType) => {
-            console.log("Selecting items for sliceType:", sliceType, items);
 
             // Use standard object property access (items[sliceType])
             // instead of the Map methods (.has() and .get()).
@@ -88,7 +87,6 @@ export const getSelectedItemBySliceType=()=>
     createSelector(
         [getSelectedItem, getSliceType],
         (item, sliceType) => {
-            console.log("Selecting item for sliceType:", sliceType+' selectedItem');
             if (item[sliceType]) {
                 return item[sliceType];
             } return {};

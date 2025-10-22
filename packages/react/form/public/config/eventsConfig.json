@@ -29,16 +29,39 @@
     },
     {
       "name": "date",
-      "type": "text",
+      "type": "datetime-local",
       "label": "Date",
       "labelClassName": "form-label",
       "inputClassName": "form-input",
       "default": "",
       "required": true,
       "validation": {
-
       },
         "errorMessage": "Date description"
+    },
+    {
+      "name": "eventType",
+      "type": "checkbox",
+        "label": "Event Type",
+        "labelClassName": "form-label",
+        "inputClassName": "form-input",
+        "options": [
+          { "label": "Conference", "value": "conference" },
+          { "label": "Meetup", "value": "meetup" },
+          { "label": "Workshop", "value": "workshop" }
+        ]
+    },
+    {
+      "name": "currency",
+      "type": "select",
+      "label": "Currency",
+      "labelClassName": "form-label",
+      "inputClassName": "form-input",
+      "options": [
+        { "label": "USD", "value": "USD" },
+        { "label": "EUR", "value": "EUR" },
+        { "label": "JPY", "value": "JPY" }
+      ]
     },
     {
       "name": "submit",

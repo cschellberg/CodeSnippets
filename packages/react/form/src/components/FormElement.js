@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from "react";
-import Form from "./Form";
+import React, {useState, useEffect,useRef} from "react";
+
 
 function FormElement({elementConfigString,formData,setFormData}) {
     const elementConfig = JSON.parse(elementConfigString);
     const [elementValue, setElementValue] = useState("");
     const [hasErrors, setHasErrors] = useState(false);
+    const selectRef = useRef();
 
     useEffect(() => {
         let jsonObj=Object.fromEntries(formData);
@@ -17,6 +18,15 @@ function FormElement({elementConfigString,formData,setFormData}) {
         }
     }, [formData]);
 
+    useEffect(() => {
+
+        if (selectRef.current && selectRef.current.value) {
+            const value=selectRef.current.value;
+            setElementValue(value);
+            setMapValue(elementConfig.name,value)
+        }
+    }, []);
+
     const setMapValue=(key,value)=>{
         const newMap=new Map(formData);
         newMap.set(key,value)
@@ -25,7 +35,7 @@ function FormElement({elementConfigString,formData,setFormData}) {
 
     const validateByMinMax=(value)=>{
         const numValue=parseFloat(value);
-        if (elementConfig.validation.min != null){
+        if (elementConfig.validation.min){
              if (numValue < elementConfig.validation.min){
                 setHasErrors(true);
                 return
@@ -66,6 +76,38 @@ function FormElement({elementConfigString,formData,setFormData}) {
         validateValue(value);
     }
 
+    const changeSelectValue = (event) => {
+        const newValue = event.target.value;
+        setElementValue(newValue);
+        setMapValue(elementConfig.name, newValue);
+    }
+
+    const changeCheckboxValue = (event) => {
+        const fieldset=event.target.parentElement.parentElement;
+        const checkboxes=fieldset.querySelectorAll(`input[name='${elementConfig.name}']:checked`);
+        let selectedValues=[];
+        checkboxes.forEach((checkbox)=>{
+            selectedValues.push(checkbox.value);
+        });
+        const value=selectedValues.join(",");
+        setElementValue(value);
+        setMapValue(elementConfig.name,value)
+    }
+
+    const getDateInput = (type) => {
+        return (<div className="form-group">
+                <label className={elementConfig.labelClassName}>{elementConfig.label}</label> <input
+                className={elementConfig.inputClassName}
+                type={type}
+                placeholder={elementConfig.name}
+                onChange={changeValue}
+                value={elementValue}
+            />
+                {hasErrors &&(<div className="error-message">{elementConfig.errorMessage}</div>)}
+            </div>
+        );
+    }
+
     const getInputType = (type) => {
         return (<div className="form-group">
                 <label className={elementConfig.labelClassName}>{elementConfig.label}</label> <input
@@ -91,6 +133,44 @@ function FormElement({elementConfigString,formData,setFormData}) {
         </div>   );
     }
 
+    const getSelectInput = () => {
+        return (
+            <div className="form-group">
+                <label className={elementConfig.labelClassName}>{elementConfig.label}</label>
+            <select onChange={changeSelectValue } ref={selectRef}>
+                name={elementConfig.name}
+                value={elementValue}
+                {elementConfig.options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                ))}
+            </select>
+                </div>
+        );
+    }
+
+    const getCheckboxGroupInput = () => {
+        return (
+            <div className="form-group">
+            <fieldset  onChange={changeCheckboxValue }>
+                <legend>{elementConfig.label}</legend>
+                {elementConfig.options.map((option) => (
+                    <label key={option.value}>
+                        <input
+                            type="checkbox"
+                            name={elementConfig.name} // Use the same name for the group
+                            value={option.value}
+
+                        />
+                        {option.label}
+                    </label>
+                ))}
+            </fieldset>
+            </div>
+        );
+    }
+
     const getFormElement = (type) => {
         switch (type) {
             case "text":
@@ -99,16 +179,13 @@ function FormElement({elementConfigString,formData,setFormData}) {
                 return getInputType("number");
             case "submit":
                 return getSubmitButton();
+            case "date":
+            case "datetime-local":
+                return getDateInput(type);
             case "select":
-                return (
-                    <select>
-                        {elementConfig.options.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
-                );
+                return getSelectInput();
+            case "checkbox":
+                return getCheckboxGroupInput();
             default:
                 return null;
         }
