@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react';
 import {
     BrowserRouter as Router, // Use this once at the root
@@ -5,8 +6,7 @@ import {
     Route,
     Link, // Used for navigation links
 } from 'react-router-dom';
-import Members from './test_screens/Members';
-import Events from './test_screens/Events';
+import {Members, Events} from './dist/react_form.js';
 
 const NavBar = () => {
     return (

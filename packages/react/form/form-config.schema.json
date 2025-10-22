@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/form-config.schema.json",
+  "title": "Dynamic Form Configuration Schema",
+  "type": "object",
+  "properties": {
+    "formClassName": {
+      "type": "string",
+      "description": "CSS class name for the main form container."
+    },
+    "elements": {
+      "type": "array",
+      "description": "A list of form elements (inputs, buttons, etc.).",
+      "items": {
+        "type": "object",
+        "title": "Form Element",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Unique identifier for the element (used for form data keys)."
+          },
+          "type": {
+            "type": "string",
+            "description": "HTML input type or component type (e.g., text, checkbox, submit, select)."
+          },
+          "label": {
+            "type": "string",
+            "description": "Text label displayed next to the input."
+          },
+          "labelClassName": {
+            "type": "string",
+            "description": "CSS class name for the element's label."
+          },
+          "inputClassName": {
+            "type": "string",
+            "description": "CSS class name for the actual input field or button."
+          },
+          "default": {
+            "type": ["string", "number", "boolean"],
+            "description": "The default value for the input field."
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the field is mandatory for submission."
+          },
+          "validation": {
+            "type": "object",
+            "description": "Validation rules for the input.",
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "format": "regex",
+                "description": "A regular expression pattern for input validation."
+              }
+            },
+            "additionalProperties": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Message displayed when validation fails."
+          },
+          "options": {
+            "type": "array",
+            "description": "Available choices for select and checkbox/radio group types.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": ["label", "value"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["name", "type"],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "enum": ["select", "checkbox", "radio"]
+                }
+              }
+            },
+            "then": {
+              "required": ["options"]
+            }
+          }
+        ]
+      }
+      ]
+    },
+    "required": ["formClassName", "elements"],
+    "additionalProperties": false
+  }

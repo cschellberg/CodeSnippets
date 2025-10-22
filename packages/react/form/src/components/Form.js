@@ -1,7 +1,7 @@
 import React, {useState, useEffect,useMemo} from "react";
-import FormElement from "./FormElement";
+import FormElement from "./FormElement.js";
 import { useDispatch,useSelector } from 'react-redux';
-import {updateSliceItem, getSelectedItemBySliceType} from "../redux/item/itemSlice";
+import {updateSliceItem, getSelectedItemBySliceType} from "../redux/item/itemSlice.js";
 
 let idCounter=1;
 

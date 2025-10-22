@@ -1,21 +1,30 @@
 {
   "name": "form",
   "version": "1.0.0",
+  "type": "module",
   "description": "A generic react form",
   "main": "public/App.js",
   "scripts": {
     "start": "react-scripts start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js",
+    "demo": "react-scripts start demo.js"
   },
   "author": "Donald Schellberg",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-react": "^7.27.1",
     "@reduxjs/toolkit": "^2.9.1",
+    "babel-loader": "^10.0.0",
+    "css-loader": "^7.1.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.4",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "style-loader": "^4.0.0",
+    "webpack-cli": "^6.0.1"
   },
   "browserslist": {
     "production": [

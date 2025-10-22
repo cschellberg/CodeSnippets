@@ -5,7 +5,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 // Import your main application component
-import App from './App';
+import App from './App.jsx';
 
 // Optional: Import global styles (if you have them)
 import './App.css';

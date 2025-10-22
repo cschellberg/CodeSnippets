@@ -1,6 +1,6 @@
 import React, {useEffect, useState,useMemo} from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import {selectSliceItem,deleteSliceItem, selectAllItemsBySliceType} from '../redux/item/itemSlice';
+import {selectSliceItem,deleteSliceItem, selectAllItemsBySliceType} from '../redux/item/itemSlice.js';
 
 function Table({config,sliceType}) {
     const [headers, setHeaders] = useState([]);
