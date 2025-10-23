@@ -76,7 +76,7 @@ Modeling time or other units that use a mixed-radix system (e.g., Days/30,Hours/
 
 ### Example
 
-There is an html final that can demo the counter.  It is called
+There is an html file that can demo the counter.  It is called
 counterDemo.html
 
 ### License
