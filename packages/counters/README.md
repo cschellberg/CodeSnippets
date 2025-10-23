@@ -1,12 +1,12 @@
-# JavaScript Mixed-Radix Counter
+### JavaScript Mixed-Radix Counter
 
-## The Counter Class (The Single Digit)
+### The Counter Class (The Single Digit)
 
 The Counter class represents a single position or "digit" in the overall counting system.
 
 **Role:** Manages the state and rollover logic for its specific position.
 
-## Key Properties:
+### Key Properties:
 
 **count:** The counter's current value (starts at 0).
 
@@ -14,13 +14,13 @@ The Counter class represents a single position or "digit" in the overall countin
 
 **nextCounter:** A reference to the counter instance that must be incremented or decremented when this counter rolls over or under.
 
-## Key Methods:
+### Key Methods:
 
 **inc():** Increments the count. If the count reaches length, it resets to 0 and triggers the inc() method on the nextCounter.
 
 **dec():** Decrements the count. If the count drops below 0, it resets to length - 1 and triggers the dec() method on the nextCounter.
 
-## The Counters Class (The Odometer System)
+### The Counters Class (The Odometer System)
 The Counters class acts as the main interface, managing the entire chained sequence of Counter objects.
 
 **Role:** Initializes the counter chain and provides high-level methods to control the system.
@@ -43,7 +43,7 @@ Key Methods:
 
 **isZero():** Returns true if every single counter in the chain is currently at 0.
 
-## Use Case and Application
+### Use Case and Application
 The code effectively implements a flexible, multi-level iterator.
 
 ### Example:
@@ -70,14 +70,14 @@ Implementing nested loops with varying iteration limits.
 
 Modeling time or other units that use a mixed-radix system (e.g., Days/30,Hours/24,Minutes/60,Seconds/60).
 
-## Testing, Building
+### Testing, Building
 **To Test:** npm run test
 **To Build:** npm run build
 
-## Example
+### Example
 
 There is an html final that can demo the counter.  It is called
 counterDemo.html
 
-## License
+### License
 This code is free for non-commercial use. Commercial production use requires a paid license. See LICENSE.md for details.
