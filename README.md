@@ -24,7 +24,7 @@ This package implements a generic solution for building forms and tables
 in React.  The forms and tables are built from a JSON configuration file. The configuration file
 specifies the fields, labels, data types, and validation rules for the form or table. It maintains
 state through react-redux and one slice is shared between 
-diferent forms and tables.  The item slice are separated by the slice type
+different forms and tables.  The item slice is separated by the slice type
 which is determined by the user.  In the example there are 
 two types of forms/tables: members and events.  So the respective slice types
 are members and events.
